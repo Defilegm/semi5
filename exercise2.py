@@ -1,23 +1,13 @@
-# # 39(2). Создайте программу для игры в ""Крестики-нолики"". 
-# # Игра реализуется в терминале, игроки ходят поочередно, 
-# # необходимо вывести карту(как удобнее, можно например в виде списка,
-# #  внутри которого будут 3 списка по 3 элемента, 
-# #  каждый из которого обозначает соответсвующие клетки от 1 до 9), 
-# #  сделать проверку не занята ли клетка, на которую мы хотим поставить
-# #   крестик или нолик, и проверку на победу
-# # ( стоят ли крестики или нолик в ряд по диагонали, вертикали, горизонтали)
-
-#  x o o
-#  o x o
-#  x o x
 arr = [' '  for i in range (9)]
-
 firstplayername = input("Введите имя первого игрока: ")
 secondplayername = input("Введите имя второго игрока: ")
+
+
+if firstplayername == secondplayername:
+    secondplayername += '1'
 print(f'{firstplayername} играет крестиками')
 print(f'{secondplayername} играет ноликами')
-x = firstplayername
-o = secondplayername
+        
 
 def showtable(matrix):
     print(f'\t {arr[0]} | {arr[1]} | {arr[2]}')
@@ -71,9 +61,14 @@ def move(matrix,x = firstplayername, i = 1):
         print(f'Игра окончена! Победил игрок {x}!')
         showtable(matrix)
         return 0
+    if i == 10:
+        print('Ничья!')
+        showtable(matrix)
+        return 0
     
     print(f'ход номер {i}')
     showtable(matrix)
+
     if x == firstplayername:
         print(f'ход игрока {x}. Введите cвободное поле заполнения крестиком(буква "x")(от 1 до 9): ')
         index = checknum()
@@ -99,14 +94,3 @@ def move(matrix,x = firstplayername, i = 1):
         print()
         return move(matrix,x = firstplayername,i = i + 1)
 move(arr)
-
-
-
-
-
-
-    
-    
-
-
-
